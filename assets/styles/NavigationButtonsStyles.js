@@ -2,11 +2,22 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
-    flexDirection: 'column',
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
-    margin: 20,
+    padding: 20,
+  },
+  background: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
   },
   buttonContainer: {
-    marginVertical: 40,
+    marginTop: 20,
+    width: '100%',
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 18,
   },
 });

@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
+import { View, Text, TextInput, Button,ImageBackground } from 'react-native';
 import { rentCarStyles } from '../assets/styles/RentCarStyles';
-import DatePicker from 'react-native-datepicker';
+// import DatePicker from 'react-native-datepicker';
 // import NavigationButtons from './NavigationButtons';
-import { handleRentCar } from './Data'; // Importa la función handleRentCar desde tu archivo data
+import { handleRentCar } from './Data';// Importa la función handleRentCar desde tu archivo data
 
 export default function RentCar({ cars, users }) {
   const [plateNumber, setPlateNumber] = useState('');
   const [username, setUsername] = useState('');
   const [rentDate, setRentDate] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const [selectedDate, setSelectedDate] = useState(''); 
+  // const [selectedDate, setSelectedDate] = useState(''); 
 
   const handleRent = () => {
     
@@ -29,6 +29,10 @@ export default function RentCar({ cars, users }) {
   };
 
   return (
+    <ImageBackground
+      source={require('../assets/imgs/alarma.png')} // Ruta de tu imagen de fondo
+      style={rentCarStyles.background}
+    >
     <View style={rentCarStyles.container}>
       <TextInput
         style={rentCarStyles.input}
@@ -58,14 +62,15 @@ export default function RentCar({ cars, users }) {
 
       <TextInput
         style={rentCarStyles.input}
-        placeholder="Fecha alquiler DiaMesAño"
+        placeholder="Fecha alquiler (DiaMesAño)"
         value={rentDate}
         onChangeText={setRentDate}
       />
 
       <Text style={{ color: 'red' }}>{errorMessage}</Text>
       <Button title="Rentar" onPress={handleRent} />
+      
     </View>
+    </ImageBackground>
   );
 }
-

@@ -68,4 +68,5 @@ const handleRentCar = (plateNumber, username, rentDate) => {
   return "Renta exitosa.";
 };
 
-export { data, handleRentCar };
+
+export {data,handleRentCar}

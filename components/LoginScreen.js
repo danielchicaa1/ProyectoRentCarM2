@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import { TextInput, Avatar, Button } from 'react-native-paper';
 import { styles } from '../assets/styles/LoginScreenStyles.js';
-import data from './data'; // Importa el arreglo de objetos desde data.js
+import {data} from './Data.js'; // Importa el arreglo de objetos desde data.js
 
 
 export default function LoginScreen({ navigation }) {
@@ -14,18 +14,25 @@ export default function LoginScreen({ navigation }) {
 
   // Función para manejar la autenticación
   const handleAuthentication = () => {
-    // Busca en el arreglo de objetos de usuarios
-    const userData = data.find(
-      (item) => item.user && item.user.username === username && item.user.password === password
-    );
-
-    if (userData) {
-      setMessageColor(true);
-      setMessage("Inicio de sesión exitoso ...");
-      // Puedes realizar acciones adicionales aquí si es necesario
-      // Por ejemplo, guardar información de usuario en el estado global
+    if (data) {
+      const userData = data.find(
+        (item) => item.user && item.user.username === username && item.user.password === password
+      );
+  
+      if (userData) {
+        setMessageColor(true);
+        setMessage("Inicio de sesión exitoso ...");
+        // Restablecer los campos en blanco
+        setUsername('');
+        setPassword('');
+        //  realizar acciones adicionales aquí si es necesario
+        // Por ejemplo, guardar información de usuario en el estado global
+      } else {
+        setMessage("Usuario y/o contraseña incorrectos");
+        setMessageColor(false);
+      }
     } else {
-      setMessage("Usuario y/o contraseña incorrectos");
+      setMessage("Error en la base de datos de usuarios");
       setMessageColor(false);
     }
   };
