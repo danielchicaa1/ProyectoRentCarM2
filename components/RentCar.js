@@ -43,6 +43,21 @@ export default function RentCar({ cars, users }) {
       style={rentCarStyles.background}
     >
       <View style={rentCarStyles.container}>
+
+      <TextInput
+          style={rentCarStyles.input}
+          placeholder="Número de Renta"
+          value={rentNumber}
+          onChangeText={setRentNumber}
+        />
+
+        <TextInput
+          style={rentCarStyles.input}
+          placeholder="Nombre de Usuario"
+          value={username}
+          onChangeText={setUsername}
+        />
+
         {/* Cambiado a un Picker para Número de Placa */}
         <Picker
           selectedValue={plateNumber}
@@ -55,12 +70,7 @@ export default function RentCar({ cars, users }) {
           ))}
         </Picker>
 
-        <TextInput
-          style={rentCarStyles.input}
-          placeholder="Nombre de Usuario"
-          value={username}
-          onChangeText={setUsername}
-        />
+        
         <TextInput
           style={rentCarStyles.input}
           placeholder="Fecha de Inicio de Alquiler (DiaMesAño)"
@@ -73,12 +83,7 @@ export default function RentCar({ cars, users }) {
           value={rentEndDate}
           onChangeText={setRentEndDate}
         />
-        <TextInput
-          style={rentCarStyles.input}
-          placeholder="Número de Renta"
-          value={rentNumber}
-          onChangeText={setRentNumber}
-        />
+        
         <TextInput
           style={rentCarStyles.input}
           placeholder="Estado de la Renta"
