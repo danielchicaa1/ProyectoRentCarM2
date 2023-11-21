@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import { TextInput, Avatar, Button } from 'react-native-paper';
 import { styles } from '../assets/styles/LoginScreenStyles.js';
-import {data} from './Data.js'; // Importa el arreglo de objetos desde data.js
-
+import { data } from './Data.js'; // Importa el arreglo de objetos desde data.js
 
 export default function LoginScreen({ navigation }) {
   const [username, setUsername] = useState('');
@@ -12,21 +11,17 @@ export default function LoginScreen({ navigation }) {
   const [showPass, setShowPass] = useState(false);
   const [messageColor, setMessageColor] = useState(true);
 
-  // Función para manejar la autenticación
   const handleAuthentication = () => {
     if (data) {
       const userData = data.find(
         (item) => item.user && item.user.username === username && item.user.password === password
       );
-  
+
       if (userData) {
         setMessageColor(true);
         setMessage("Inicio de sesión exitoso ...");
-        // Restablecer los campos en blanco
         setUsername('');
         setPassword('');
-        //  realizar acciones adicionales aquí si es necesario
-        // Por ejemplo, guardar información de usuario en el estado global
       } else {
         setMessage("Usuario y/o contraseña incorrectos");
         setMessageColor(false);
@@ -37,11 +32,12 @@ export default function LoginScreen({ navigation }) {
     }
   };
 
-  // Función para navegar a la pantalla de creación de cuenta
   const navigateToCreateAccount = () => {
     navigation.navigate('Home', { username: username });
-    // Agrega aquí la navegación a la pantalla de creación de cuenta
-    // Por ejemplo, navigation.navigate('CreateAccount');
+  };
+
+  const navigateToForgotPassword = () => {
+    navigation.navigate('Forgot');
   };
 
   return (
@@ -87,6 +83,14 @@ export default function LoginScreen({ navigation }) {
           onPress={navigateToCreateAccount}
         >
           Crear Cuenta
+        </Button>
+        <Button
+          style={styles.button}
+          icon="account-question"
+          mode="outlined"
+          onPress={navigateToForgotPassword}
+        >
+          ¿Olvidaste tu contraseña?
         </Button>
         <Text style={[styles.message, messageColor ? { color: 'green' } : { color: 'red' }]}>{message}</Text>
       </View>
